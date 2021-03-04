@@ -18,7 +18,7 @@ router.get("/", (req, res, next) => {
       FROM (SELECT jsonb_build_object('type','Feature','geometry', ST_AsGeoJSON(geom)::json)
       AS feature FROM
       (
-          SELECT ST_ClusterDBSCAN(geom, eps := 0.05, minpoints := 2) over () AS cid, geom
+          SELECT ST_ClusterDBSCAN(geom, eps := 0.03, minpoints := 2) over () AS cid, geom
           FROM locations
           WHERE ST_TRANSFORM(geom,4326)
               @
