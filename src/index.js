@@ -19,13 +19,8 @@ app.use(
 );
 app.use(morgan("common"));
 app.use(helmet());
-app.use(
-  cors({
-    origin: process.env.CORS_ORIGIN,
-  })
-);
+app.use(cors());
 app.use(compression());
-
 app.use("/api/coordinates", coordinates);
 
 app.use(middlewares.notFound);
