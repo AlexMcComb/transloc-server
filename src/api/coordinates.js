@@ -1,10 +1,13 @@
 const { Router } = require("express");
 require("dotenv").config();
 const router = Router();
-const connectionString = process.env.DB_URI;
+const connectionString = process.env.DATABASE_URL;
 const Pool = require("pg").Pool;
 const pool = new Pool({
   connectionString,
+  ssl: {
+    rejectUnauthorized: false,
+  },
 });
 
 router.get("/", (req, res, next) => {
