@@ -1,14 +1,10 @@
 const { Router } = require("express");
 require("dotenv").config();
 const router = Router();
-
+const connectionString = process.env.DB_URI;
 const Pool = require("pg").Pool;
 const pool = new Pool({
-  user: process.env.USER,
-  host: process.env.HOST,
-  database: process.env.DB,
-  password: process.env.DB_PASSWORD,
-  port: process.env.DB_PORT,
+  connectionString,
 });
 
 router.get("/", (req, res, next) => {
